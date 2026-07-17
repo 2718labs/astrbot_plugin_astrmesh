@@ -1,0 +1,10 @@
+name: astrbot_plugin_astrmesh
+display_name: AstrMesh 事件上报
+desc: 把现场"资源不足/断供"等事件通过指令发布进本地 AstrMesh Runtime(EventGrid 领域账本),只调 loopback API,不拥有账本、不碰真机投递。
+short_desc: 现场事件上报到本地 AstrMesh Runtime。
+version: v0.1.0
+author: Ayleovelle
+repo: https://github.com/Ayleovelle/astrbot_plugin_astrmesh
+astrbot_version: ">=4.16,<5"
+support_platforms:
+  - aiocqhttp

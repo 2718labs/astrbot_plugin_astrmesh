@@ -1,0 +1,22 @@
+{
+  "api_base_url": {
+    "type": "string",
+    "description": "本地 AstrMesh Runtime 的 loopback API 地址(astrmesh-runtime serve 起的服务)",
+    "default": "http://127.0.0.1:8787"
+  },
+  "environment": {
+    "type": "string",
+    "description": "发布环境,需与 Runtime 授予发布权的 environment 一致",
+    "default": "PRODUCTION"
+  },
+  "source_id": {
+    "type": "string",
+    "description": "事件来源标识",
+    "default": "astrmesh.local"
+  },
+  "request_timeout": {
+    "type": "int",
+    "description": "调用 Runtime API 的超时秒数",
+    "default": 10
+  }
+}
