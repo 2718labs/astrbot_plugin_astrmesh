@@ -44,9 +44,16 @@ class AstrMeshPlugin(Star):
             return default
 
     @filter.command("astrmesh", alias={"上报"})
-    async def report(self, event: AstrMessageEvent, area: str, summary: str):
+    async def report(self, event: AstrMessageEvent, area: str):
         """上报一条 RESOURCE_LOW 现场事件到本地 AstrMesh Runtime。用法: /astrmesh <区域> <简述>"""
         try:
+            # 区域由框架按位置解析;简述取区域之后的全部文本,支持多词(不依赖内部 GreedyStr)。
+            summary = event.message_str.partition(area)[2].strip()
+            if not summary:
+                yield event.plain_result(
+                    "用法: /astrmesh <区域> <简述>,例如 /astrmesh B_ZONE 饮水点断供"
+                )
+                return
             base = self._conf_str("api_base_url", "http://127.0.0.1:8787").rstrip("/")
             environment = self._conf_str("environment", "PRODUCTION")
             source_id = self._conf_str("source_id", "astrmesh.local")
